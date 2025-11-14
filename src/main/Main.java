@@ -6,6 +6,7 @@ package main;
 
 import entities.Cobertura;
 import entities.Vehiculo;
+import entities.SeguroVehicular;
 import java.time.LocalDate;
 
 /**
@@ -19,21 +20,23 @@ public class Main {
      */
     public static void main(String[] args) {
         
+        SeguroVehicular segundaSeguros = new SeguroVehicular(
+        
+        );
+        
+    
+        
         // objeto de prueba
         Vehiculo auto = new Vehiculo(
                 1L, // id vehículo
                 false, // eliminado
+                "Dominio", //dominio
                 "Toyota", // marca
                 "Corolla", // modelo
                 2020, // año
                 "CHS123456XYZ", // número de chasis
-
-                // Datos del seguro (composición)
-                "La Caja", // aseguradora
-                "POL-998877", // número de póliza
-                Cobertura.TODO_RIESGO, // enum Cobertura
-                LocalDate.of(2025, 5, 20) // vencimiento
-        );
+                segundaSeguros
+      );
         System.out.println(auto.toString());
     }
 }
