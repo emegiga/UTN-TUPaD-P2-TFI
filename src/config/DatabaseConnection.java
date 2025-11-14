@@ -13,12 +13,9 @@ import java.sql.SQLException;
  * @author matut
  */
 public class DatabaseConnection {
-
-    // URL de conexión a la base de datos MySQL con el puerto 3306 y la base llamada "db"
+    // URL de conexión a la base de datos MySQL a la base
     private static final String URL = "jdbc:mysql://localhost:3306/tfi_grupo147_v2";
-    // Usuario para la conexión
     private static final String USER = "root";
-    // Contraseña del usuario
     private static final String PASSWORD = "utn-2025";
 
     // Bloque estático para cargar el driver JDBC una sola vez al iniciar la clase
@@ -34,11 +31,10 @@ public class DatabaseConnection {
 
     // Método estático que devuelve una conexión a la base de datos
     public static Connection getConnection() throws SQLException {
-        // Validación simple para evitar URLs o credenciales vacías
+        // Validación para evitar URLs o credenciales vacías
         if (URL == null || URL.isEmpty() || USER == null || USER.isEmpty() || PASSWORD == null || PASSWORD.isEmpty()) {
             throw new SQLException("Configuración de la base de datos incompleta o inválida");
         }
-        // Se obtiene la conexión con DriverManager usando URL, usuario y contraseña
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }    
 }
