@@ -19,7 +19,7 @@ public class DatabaseConnection {
     // Usuario para la conexión
     private static final String USER = "root";
     // Contraseña del usuario
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "eLVISYRANTES1";
 
     // Bloque estático para cargar el driver JDBC una sola vez al iniciar la clase
     static {
