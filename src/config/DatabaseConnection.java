@@ -16,7 +16,8 @@ public class DatabaseConnection {
     // URL de conexión a la base de datos MySQL a la base
     private static final String URL = "jdbc:mysql://localhost:3306/tfi_grupo147_v2";
     private static final String USER = "root";
-    private static final String PASSWORD = "utn-2025";
+    // Contraseña del usuario
+    private static final String PASSWORD = "eLVISYRANTES1";
 
     // Bloque estático para cargar el driver JDBC una sola vez al iniciar la clase
     static {
