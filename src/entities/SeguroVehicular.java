@@ -1,12 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import java.time.LocalDate;
 
+/* 
+Entidad que representa una póliza de seguros (seguro vehicular).
+Relación con Vehículo: Cada póliza corresponde a un vehículo específico. 
+Tabla BD: SeguroVehicular
+*/
+
 public class SeguroVehicular {
+
     private Long id;
     private boolean eliminado;
     private String aseguradora;
@@ -14,11 +17,13 @@ public class SeguroVehicular {
     private Cobertura cobertura;
     private LocalDate vencimiento;
 
+    // constructor vacío
     public SeguroVehicular() {
     }
 
+    // constructor completo
     public SeguroVehicular(Long id, boolean eliminado, String aseguradora,
-                           String nroPoliza, Cobertura cobertura, LocalDate vencimiento) {
+            String nroPoliza, Cobertura cobertura, LocalDate vencimiento) {
         this.id = id;
         this.eliminado = eliminado;
         this.aseguradora = aseguradora;
@@ -28,33 +33,59 @@ public class SeguroVehicular {
     }
 
     // Getters y setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public boolean isEliminado() { return eliminado; }
-    public void setEliminado(boolean eliminado) { this.eliminado = eliminado; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getAseguradora() { return aseguradora; }
-    public void setAseguradora(String aseguradora) { this.aseguradora = aseguradora; }
+    public boolean isEliminado() {
+        return eliminado;
+    }
 
-    public String getNroPoliza() { return nroPoliza; }
-    public void setNroPoliza(String nroPoliza) { this.nroPoliza = nroPoliza; }
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
 
-    public Cobertura getCobertura() { return cobertura; }
-    public void setCobertura(Cobertura cobertura) { this.cobertura = cobertura; }
+    public String getAseguradora() {
+        return aseguradora;
+    }
 
-    public LocalDate getVencimiento() { return vencimiento; }
-    public void setVencimiento(LocalDate vencimiento) { this.vencimiento = vencimiento; }
+    public void setAseguradora(String aseguradora) {
+        this.aseguradora = aseguradora;
+    }
+
+    public String getNroPoliza() {
+        return nroPoliza;
+    }
+
+    public void setNroPoliza(String nroPoliza) {
+        this.nroPoliza = nroPoliza;
+    }
+
+    public Cobertura getCobertura() {
+        return cobertura;
+    }
+
+    public void setCobertura(Cobertura cobertura) {
+        this.cobertura = cobertura;
+    }
+
+    public LocalDate getVencimiento() {
+        return vencimiento;
+    }
+
+    public void setVencimiento(LocalDate vencimiento) {
+        this.vencimiento = vencimiento;
+    }
 
     @Override
     public String toString() {
-        return "SeguroVehicular{" +
-                "id=" + id +
-                ", eliminado=" + eliminado +
-                ", aseguradora='" + aseguradora + '\'' +
-                ", nroPoliza='" + nroPoliza + '\'' +
-                ", cobertura=" + cobertura +
-                ", vencimiento=" + vencimiento +
-                '}';
+        return ". [ID " + id + "] "
+//                + ", eliminado=" + eliminado
+                + "N° DE POLIZA: " + nroPoliza + "  FECHA DE VENCIMIENTO: " + vencimiento
+                + "  ASEGURADORA: " + aseguradora + "  COBERTURA: " + cobertura;
     }
 }

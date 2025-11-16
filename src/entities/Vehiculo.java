@@ -1,14 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
-import java.time.LocalDate;
-
-
+/* 
+Entidad que representa un vehículo.
+Relación con SeguroVehicular: Cada vehículo tiene una única póliza de seguro asociada.
+Tabla BD: Vehiculo
+*/
 
 public class Vehiculo {
+
     private Long id;
     private boolean eliminado;
     private String dominio;
@@ -18,11 +17,13 @@ public class Vehiculo {
     private String nroChasis;
     private SeguroVehicular seguro;
 
+    // constructor vacío
     public Vehiculo() {
     }
 
+    // constructor completo
     public Vehiculo(Long id, boolean eliminado, String dominio, String marca,
-                    String modelo, int anio, String nroChasis, SeguroVehicular seguro) {
+            String modelo, int anio, String nroChasis, SeguroVehicular seguro) {
         this.id = id;
         this.eliminado = eliminado;
         this.dominio = dominio;
@@ -34,41 +35,76 @@ public class Vehiculo {
     }
 
     // Getters y setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public boolean isEliminado() { return eliminado; }
-    public void setEliminado(boolean eliminado) { this.eliminado = eliminado; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDominio() { return dominio; }
-    public void setDominio(String dominio) { this.dominio = dominio; }
+    public boolean isEliminado() {
+        return eliminado;
+    }
 
-    public String getMarca() { return marca; }
-    public void setMarca(String marca) { this.marca = marca; }
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
 
-    public String getModelo() { return modelo; }
-    public void setModelo(String modelo) { this.modelo = modelo; }
+    public String getDominio() {
+        return dominio;
+    }
 
-    public int getAnio() { return anio; }
-    public void setAnio(int anio) { this.anio = anio; }
+    public void setDominio(String dominio) {
+        this.dominio = dominio;
+    }
 
-    public String getNroChasis() { return nroChasis; }
-    public void setNroChasis(String nroChasis) { this.nroChasis = nroChasis; }
+    public String getMarca() {
+        return marca;
+    }
 
-    public SeguroVehicular getSeguro() { return seguro; }
-    public void setSeguro(SeguroVehicular seguro) { this.seguro = seguro; }
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public String getNroChasis() {
+        return nroChasis;
+    }
+
+    public void setNroChasis(String nroChasis) {
+        this.nroChasis = nroChasis;
+    }
+
+    public SeguroVehicular getSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(SeguroVehicular seguro) {
+        this.seguro = seguro;
+    }
 
     @Override
     public String toString() {
-        return "Vehiculo{" +
-                "id=" + id +
-                ", eliminado=" + eliminado +
-                ", dominio='" + dominio + '\'' +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", anio=" + anio +
-                ", nroChasis='" + nroChasis + '\'' +
-                ", seguro=" + seguro +
-                '}';
+        return ". [ID " + id + "] "
+//                + ", eliminado=" + eliminado
+                + "N° DE POLIZA: " + seguro.getNroPoliza()
+                + "  MARCA: " + marca + "  MODELO: " + modelo + "  N° CHASIS: " + nroChasis
+                + "  DOMINIO: " + dominio + "  AÑO: " + anio;
     }
 }
