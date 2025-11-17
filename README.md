@@ -29,7 +29,10 @@ En la carpeta 📂/docs del repositorio se encuentran los scripts SQL, el inform
 **Para compilar y ejecutar**
 
 1\. Configurar la conexión en `config/DatabaseConnection.java`, verificando que las credenciales *USER* y *PASSWORD* concidan con su usuario MySQL
-2\. Ejecutar el proyecto desde `main/main.java`.
+2\. Ejecutar el proyecto desde `main/main.java`
 
-**Video **
+
+
+**Video**
+
 📼 Link: 
