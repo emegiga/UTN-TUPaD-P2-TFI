@@ -20,48 +20,49 @@ public class AppMenu {
     private static final SeguroVehicularService seguroService = new SeguroVehicularServiceImpl();
 
     public static void main(String[] args) {
+        new AppMenu().run();
+}
+    
 
+    public void run() {
         int opcion;
         do {
             mostrarMenuPrincipal();
-            opcion = leerEntero("Elegí una opción: ");
-
-            try {
-                switch (opcion) {
-                    case 1 -> menuVehiculos();
-                    case 2 -> menuSeguros();
-                    case 0 -> System.out.println("Saliendo...");
-                    default -> System.out.println("Opción inválida.");
-                }
-            } catch (RuntimeException e) {
-                System.out.println("⚠ Error: " + e.getMessage());
+            opcion = leerEntero("\nIngresa el nro de opción deseado: ");
+            switch (opcion) {
+                case 1 ->
+                    menuVehiculos();
+                case 2 ->
+                    menuSeguros();
+                case 0 ->
+                    System.out.println("Saliendo...\n");
+                default ->
+                    System.out.println("Error: La opción ingresada es inválida.\n");
             }
-
-            System.out.println();
-
         } while (opcion != 0);
     }
+
 
     // ===== MENÚS =====
 
     private static void mostrarMenuPrincipal() {
-        System.out.println("===== MENÚ PRINCIPAL =====");
-        System.out.println("1 - Gestionar Vehículos");
-        System.out.println("2 - Gestionar Seguros");
-        System.out.println("0 - Salir");
+        System.out.println("==================== MENÚ PRINCIPAL ====================");
+        System.out.println("1. Vehículos");
+        System.out.println("2. Seguros");
+        System.out.println("0. Salir");
     }
 
     private static void menuVehiculos() {
         int op;
         do {
-            System.out.println("===== MENÚ VEHÍCULOS =====");
-            System.out.println("1 - Alta vehículo + seguro (transacción)");
-            System.out.println("2 - Buscar vehículo por dominio");
-            System.out.println("3 - Buscar vehículo por ID");
+            System.out.println("\n=============== MENÚ VEHÍCULOS ===============");
+            System.out.println("1 - Alta de vehículo y seguro (transacción)");
+            System.out.println("2 - Buscar vehículo x dominio");
+            System.out.println("3 - Buscar vehículo x ID");
             System.out.println("4 - Listar vehículos");
-            System.out.println("5 - Actualizar vehículo + seguro");
-            System.out.println("6 - Baja lógica vehículo + seguro");
-            System.out.println("0 - Volver");
+            System.out.println("5 - Actualizar vehículo y seguro");
+            System.out.println("6 - Eliminar vehículo (baja lógica)");
+            System.out.println("0 - Volver atrás");
             op = leerEntero("Opción: ");
 
             try {
@@ -87,22 +88,20 @@ public class AppMenu {
     private static void menuSeguros() {
         int op;
         do {
-            System.out.println("===== MENÚ SEGUROS =====");
-            System.out.println("1 - Alta de seguro");
-            System.out.println("2 - Buscar seguro por ID");
+            System.out.println("\n========== MENÚ SEGUROS ==========");
+            System.out.println("1 - Actualizar seguro");
+            System.out.println("2 - Buscar seguro x ID");
             System.out.println("3 - Listar seguros");
-            System.out.println("4 - Actualizar seguro");
-            System.out.println("5 - Baja lógica de seguro");
-            System.out.println("0 - Volver");
+            System.out.println("4 - Eliminar seguro (baja lógica)");
+            System.out.println("0 - Volver atrás");
             op = leerEntero("Opción: ");
 
             try {
                 switch (op) {
-                    case 1 -> altaSeguro();
+                    case 1 -> actualizarSeguro();
                     case 2 -> buscarSeguroPorId();
                     case 3 -> listarSeguros();
-                    case 4 -> actualizarSeguro();
-                    case 5 -> bajaLogicaSeguro();
+                    case 4 -> bajaLogicaSeguro();
                     case 0 -> System.out.println("Volviendo al menú principal...");
                     default -> System.out.println("Opción inválida.");
                 }
@@ -169,7 +168,7 @@ public class AppMenu {
     }
 
     private static void listarVehiculos() {
-        System.out.println("--- Listado de vehículos ---");
+        System.out.println("\n--- Listado de vehículos ---");
         List<Vehiculo> lista = vehiculoService.listarTodos();
         if (lista.isEmpty()) {
             System.out.println("No hay vehículos cargados.");
@@ -188,7 +187,7 @@ public class AppMenu {
             return;
         }
 
-        System.out.println("Actual actual: " + existente);
+        System.out.println("Actual: " + existente);
 
         // Datos nuevos (si querés, podrías permitir enter vacío para dejar igual)
         String dominio = leerTexto("Nuevo dominio (" + existente.getDominio() + "): ").toUpperCase();
@@ -224,13 +223,6 @@ public class AppMenu {
 
     // ===== CRUD SEGURO =====
 
-    private static void altaSeguro() {
-        System.out.println("--- Alta de seguro ---");
-        SeguroVehicular s = leerDatosSeguroDesdeConsola();
-        SeguroVehicular creado = seguroService.insertar(s);
-        System.out.println("✅ Seguro creado: " + creado);
-    }
-
     private static void buscarSeguroPorId() {
         System.out.println("--- Buscar seguro por ID ---");
         long id = leerEntero("ID de seguro: ");
@@ -243,7 +235,7 @@ public class AppMenu {
     }
 
     private static void listarSeguros() {
-        System.out.println("--- Listado de seguros ---");
+        System.out.println("\n--- Listado de seguros ---");
         List<SeguroVehicular> lista = seguroService.getAll();
         if (lista.isEmpty()) {
             System.out.println("No hay seguros cargados.");
@@ -262,7 +254,7 @@ public class AppMenu {
             return;
         }
 
-        System.out.println("Actual actual: " + existente);
+        System.out.println("Actual: " + existente);
         actualizarDatosSeguroDesdeConsola(existente);
         SeguroVehicular actualizado = seguroService.actualizar(existente);
         System.out.println("✅ Seguro actualizado: " + actualizado);
@@ -351,7 +343,7 @@ public class AppMenu {
                 String linea = SC.nextLine();
                 return Integer.parseInt(linea.trim());
             } catch (NumberFormatException e) {
-                System.out.println("Ingresá un número válido.");
+                System.out.println("Error: Tenés que ingresar un número válido.\n");
             }
         }
     }

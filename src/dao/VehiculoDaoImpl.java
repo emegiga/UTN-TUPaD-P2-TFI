@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import entities.Cobertura;
@@ -12,6 +8,14 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+DAO para la entidad Vehiculo:
+  - Implementa GenericDAO<Vehiculo> para operaciones CRUD estándar
+  - Uso de PreparedStatement en todas las consultas
+  - Implementación de soft delete (eliminado = TRUE)
+  - Búsquedas especializadas (por ID, por patente)
+*/
 
 public class VehiculoDaoImpl implements VehiculoDao {
 
@@ -40,22 +44,22 @@ public class VehiculoDaoImpl implements VehiculoDao {
         JOIN SeguroVehicular s ON v.seguro_id = s.id
         """;
 
-    private static final String SELECT_BY_ID_SQL = SELECT_BASE + " WHERE v.id = ?";
+    private static final String SELECT_BY_ID_SQL = SELECT_BASE + " WHERE v.id = ? AND v.eliminado = FALSE AND s.eliminado = FALSE";
 
-    private static final String SELECT_BY_DOMINIO_SQL = SELECT_BASE + " WHERE v.dominio = ?";
+    private static final String SELECT_BY_DOMINIO_SQL = SELECT_BASE + " WHERE v.dominio = ? AND v.eliminado = FALSE AND s.eliminado = FALSE";
 
-    private static final String SELECT_ALL_SQL = SELECT_BASE;
+    private static final String SELECT_ALL_SQL = SELECT_BASE + " WHERE v.eliminado = FALSE AND s.eliminado = FALSE";
 
     private static final String UPDATE_SQL = """
         UPDATE Vehiculo
         SET eliminado = ?, dominio = ?, marca = ?, modelo = ?, anio = ?, nroChasis = ?, seguro_id = ?
-        WHERE id = ?
+        WHERE id = ? AND eliminado = FALSE
         """;
 
     private static final String DELETE_LOGICO_SQL = """
         UPDATE Vehiculo
         SET eliminado = 1
-        WHERE id = ?
+        WHERE id = ? AND eliminado = FALSE
         """;
 
     @Override
@@ -194,4 +198,3 @@ public class VehiculoDaoImpl implements VehiculoDao {
         );
     }
 }
-

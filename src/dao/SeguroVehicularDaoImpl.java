@@ -9,6 +9,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+DAO para la entidad SeguroVehicular:
+  - Implementa GenericDAO<SeguroVehicular> para operaciones CRUD estándar
+  - Uso de PreparedStatement en todas las consultas
+  - Implementación de soft delete (eliminado = TRUE)
+  - Búsqueda por ID
+*/
+
 public class SeguroVehicularDaoImpl implements SeguroVehicularDao {
 
     private static final String INSERT_SQL = """
@@ -19,18 +27,19 @@ public class SeguroVehicularDaoImpl implements SeguroVehicularDao {
     private static final String SELECT_BY_ID_SQL = """
         SELECT id, eliminado, aseguradora, nroPoliza, cobertura, vencimiento
         FROM SeguroVehicular
-        WHERE id = ?
+        WHERE id = ? AND eliminado = FALSE
         """;
 
     private static final String SELECT_ALL_SQL = """
         SELECT id, eliminado, aseguradora, nroPoliza, cobertura, vencimiento
         FROM SeguroVehicular
+        WHERE eliminado = FALSE                                         
         """;
 
     private static final String UPDATE_SQL = """
         UPDATE SeguroVehicular
         SET eliminado = ?, aseguradora = ?, nroPoliza = ?, cobertura = ?, vencimiento = ?
-        WHERE id = ?
+        WHERE id = ? AND eliminado = FALSE
         """;
 
     private static final String DELETE_LOGICO_SQL = """

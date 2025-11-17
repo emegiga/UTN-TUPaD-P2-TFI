@@ -20,12 +20,9 @@ public class SeguroVehicularServiceImpl implements SeguroVehicularService {
 
     @Override
     public SeguroVehicular insertar(SeguroVehicular seguro) {
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            seguroDao.crear(seguro, conn);
-            return seguro;
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al insertar seguro: " + e.getMessage(), e);
-        }
+        throw new UnsupportedOperationException(
+                "Existe una relación de composición: Solo se puede crear un seguro desde un Vehículo."
+        );
     }
 
     @Override
