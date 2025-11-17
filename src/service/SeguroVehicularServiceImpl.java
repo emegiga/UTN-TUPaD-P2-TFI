@@ -21,7 +21,7 @@ public class SeguroVehicularServiceImpl implements SeguroVehicularService {
     @Override
     public SeguroVehicular insertar(SeguroVehicular seguro) {
         throw new UnsupportedOperationException(
-                "Existe una relación de composición: Unicamente se puede crear un seguro desde un Vehículo."
+                "Existe una relación de composición: Solo se puede crear un seguro desde un Vehículo."
         );
     }
 

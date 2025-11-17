@@ -8,10 +8,8 @@ Relación con Vehículo: Cada póliza corresponde a un vehículo específico.
 Tabla BD: SeguroVehicular
 */
 
-public class SeguroVehicular {
+public class SeguroVehicular extends BaseVehiculoSeguro{
 
-    private Long id;
-    private boolean eliminado;
     private String aseguradora;
     private String nroPoliza;
     private Cobertura cobertura;
@@ -19,13 +17,13 @@ public class SeguroVehicular {
 
     // constructor vacío
     public SeguroVehicular() {
+        super();
     }
 
     // constructor completo
     public SeguroVehicular(Long id, boolean eliminado, String aseguradora,
             String nroPoliza, Cobertura cobertura, LocalDate vencimiento) {
-        this.id = id;
-        this.eliminado = eliminado;
+        super(id, eliminado);
         this.aseguradora = aseguradora;
         this.nroPoliza = nroPoliza;
         this.cobertura = cobertura;
@@ -33,22 +31,6 @@ public class SeguroVehicular {
     }
 
     // Getters y setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isEliminado() {
-        return eliminado;
-    }
-
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
-    }
-
     public String getAseguradora() {
         return aseguradora;
     }
@@ -83,7 +65,7 @@ public class SeguroVehicular {
 
     @Override
     public String toString() {
-        return ". [ID " + id + "] "
+        return ". [ID " + getId() + "] "
 //                + ", eliminado=" + eliminado
                 + "N° DE POLIZA: " + nroPoliza + "  FECHA DE VENCIMIENTO: " + vencimiento
                 + "  ASEGURADORA: " + aseguradora + "  COBERTURA: " + cobertura;

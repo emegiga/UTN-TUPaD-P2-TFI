@@ -6,10 +6,8 @@ Relación con SeguroVehicular: Cada vehículo tiene una única póliza de seguro
 Tabla BD: Vehiculo
 */
 
-public class Vehiculo {
+public class Vehiculo extends BaseVehiculoSeguro{
 
-    private Long id;
-    private boolean eliminado;
     private String dominio;
     private String marca;
     private String modelo;
@@ -19,13 +17,13 @@ public class Vehiculo {
 
     // constructor vacío
     public Vehiculo() {
+        super();
     }
 
     // constructor completo
     public Vehiculo(Long id, boolean eliminado, String dominio, String marca,
             String modelo, int anio, String nroChasis, SeguroVehicular seguro) {
-        this.id = id;
-        this.eliminado = eliminado;
+        super(id, eliminado);
         this.dominio = dominio;
         this.marca = marca;
         this.modelo = modelo;
@@ -35,22 +33,6 @@ public class Vehiculo {
     }
 
     // Getters y setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isEliminado() {
-        return eliminado;
-    }
-
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
-    }
-
     public String getDominio() {
         return dominio;
     }
@@ -101,7 +83,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return ". [ID " + id + "] "
+        return ". [ID " + getId() + "] "
 //                + ", eliminado=" + eliminado
                 + "N° DE POLIZA: " + seguro.getNroPoliza()
                 + "  MARCA: " + marca + "  MODELO: " + modelo + "  N° CHASIS: " + nroChasis
