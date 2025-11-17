@@ -35,4 +35,4 @@ En la carpeta 📂/docs del repositorio se encuentran los scripts SQL, el inform
 
 **Video**
 
-📼 Link: 
+📼 Link: https://youtu.be/tDpPPhSvhI0
